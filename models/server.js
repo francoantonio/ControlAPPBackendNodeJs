@@ -1,16 +1,24 @@
 const express = require('express');
 const cors = require('cors');
+const { dbConnection } = require('../database/config');
 class Server {
 	constructor() {
 		this.app = express();
 		this.PORT = process.env.PORT;
 		this.userPATH = '/api/users';
+		this.ticketPATH = '/api/ticket';
 
+		//Conectar a base de dato
+		this.database();
 		// Middlewares
 		this.middlewares();
 
 		// Rutas de mi aplicacion
 		this.routes();
+	}
+
+	async database() {
+		await dbConnection();
 	}
 
 	middlewares() {
@@ -24,6 +32,8 @@ class Server {
 
 	routes() {
 		this.app.use(this.userPATH, require('../routes/users.routes'));
+		// TODO: añadir rutas para insertar ticket
+		// this.app.use(this.ticketPATH,)
 	}
 	listen() {
 		this.app.listen(this.PORT, () => {
