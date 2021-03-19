@@ -56,19 +56,14 @@ const userDelete = async (req = request, res = response) => {
 
 	//Cambia el estado del usuario a FALSE
 	const usuario = await Usuario.findByIdAndUpdate(id, { estado: false });
-	res.json(usuario);
-};
 
-const userPatch = (req = request, res = response) => {
-	res.json({
-		msg: 'patch API - Controlador',
-	});
+	res.json({ usuario });
 };
 
 module.exports = {
 	userGet,
 	userPost,
 	userDelete,
-	userPatch,
+
 	userPut,
 };
