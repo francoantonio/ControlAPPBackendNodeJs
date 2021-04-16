@@ -8,6 +8,7 @@ class Server {
 		this.userPATH = '/api/users';
 		this.authPATH = '/api/auth';
 		this.ticketPATH = '/api/ticket';
+		this.incidencePATH = '/api/incidence';
 
 		//Conectar a base de dato
 		this.database();
@@ -34,8 +35,8 @@ class Server {
 	routes() {
 		this.app.use(this.authPATH, require('../routes/auth.routes'));
 		this.app.use(this.userPATH, require('../routes/users.routes'));
-		// TODO: añadir rutas para insertar ticket
 		this.app.use(this.ticketPATH, require('../routes/ticket.routes'));
+		this.app.use(this.incidencePATH, require('../routes/incidence.routes'));
 	}
 	listen() {
 		this.app.listen(this.PORT, () => {

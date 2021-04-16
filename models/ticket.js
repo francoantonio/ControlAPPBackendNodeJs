@@ -2,12 +2,11 @@ const { Schema, model } = require('mongoose');
 
 const TicketSchema = Schema({
 	date: {
-		type: String,
-		Request: [true, 'La fecha es olbigatorio'],
+		type: Date,
+		required: [true, 'La fecha es obligatorio'],
 	},
 	time: {
 		type: String,
-		required: [true],
 	},
 	termial: {
 		type: String,

@@ -12,8 +12,32 @@ const newTicket = (req = request, res = response) => {
 };
 
 const searchTicket = async (req = request, res = response) => {
-	const total = await ticket.find({ termial: 'A13491' });
+	const { body } = res;
+	console.log(body);
+	const total = await ticket.find();
 	res.json(total);
 };
 
-module.exports = { newTicket, searchTicket };
+const deleteTicket = async (req = request, res = response) => {
+	const { id } = req.params;
+	const ticketDelete = await ticket.findByIdAndDelete(id);
+	res.json({
+		msg: 'Registro eliminado correctamente',
+		ticketDelete,
+	});
+};
+
+const searchTicketForId = async (req = request, res = response) => {
+	const { id } = req.params;
+	const ticketId = await ticket.findById(id);
+	res.json(ticketId);
+};
+module.exports = {
+	newTicket,
+	searchTicket,
+	deleteTicket,
+	searchTicketForId,
+};
+
+//
+// Dns checker
